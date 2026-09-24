@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Читалка</title>
+  <meta name="description" content="A few Russian sentences a day. Read first, peek second.">
+  <link rel="manifest" href="manifest.webmanifest">
+  <meta name="theme-color" content="#1C9184">
+  <link rel="icon" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-192.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:ital,wght@0,400;0,700;1,400&family=PT+Sans:ital,wght@0,400;0,700;1,400&family=PT+Sans+Caption:wght@400;700&display=swap">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="wordmark">Чит<span>алк</span>а</div>
+      <div class="topbar-streak">
+        <svg class="flame" viewBox="0 0 24 24"><path d="M12 2c1 3-3 4-3 7a3 3 0 006 0c1.5 1 2 3 2 4.5A5.5 5.5 0 0111.5 19 5.5 5.5 0 016 13.5C6 9 9 6 12 2z"/></svg>
+        <span id="topStreak">0</span>
+      </div>
+    </div>
+
+    <main>
+      <!-- Home -->
+      <section class="view" id="view-home">
+        <div class="streak-row">
+          <div class="streak-num" id="streakNum">0</div>
+          <div class="streak-cap">day streak</div>
+        </div>
+        <div class="level-line">
+          <span class="level-line-label">Reading level</span>
+          <span class="level-line-value" id="levelLineValue">1 · Азбука</span>
+        </div>
+        <div class="week-strip" id="weekStrip"></div>
+        <div class="home-spacer"></div>
+        <div class="home-status" id="homeStatus"></div>
+        <button class="btn btn-primary" id="startBtn" type="button">Start today's practice</button>
+        <div class="home-foot" id="homeFoot">0 sentences read so far</div>
+      </section>
+
+      <!-- Practice -->
+      <section class="view" id="view-practice" hidden>
+        <div class="practice-top">
+          <button class="back-btn" id="backBtn" type="button">← Home</button>
+          <div class="topbar-streak">
+            <svg class="flame" viewBox="0 0 24 24"><path d="M12 2c1 3-3 4-3 7a3 3 0 006 0c1.5 1 2 3 2 4.5A5.5 5.5 0 0111.5 19 5.5 5.5 0 016 13.5C6 9 9 6 12 2z"/></svg>
+            <span id="practiceStreak">0</span>
+          </div>
+        </div>
+
+        <div class="session-cap">Today's passage</div>
+        <div class="session-dots" id="sessionDots"></div>
+
+        <div class="switch-row" style="margin-bottom:14px;">
+          <span class="switch-label">Ударе́ния</span>
+          <button class="switch" id="stressToggle" type="button" role="switch" aria-pressed="true" aria-label="Toggle stress marks"></button>
+        </div>
+
+        <div class="card">
+          <div class="level-row">
+            <div class="level-badge">
+              <span class="level-eyebrow">Level <span id="levelNum">1</span></span>
+              <span class="level-name" id="levelName">Азбука</span>
+            </div>
+            <span class="level-flash" id="levelFlash" hidden>Leveled up ↑</span>
+          </div>
+          <div class="level-desc" id="levelDesc">One sentence · everyday words</div>
+          <div class="next-level-row">
+            <span class="next-level-cap">Next level</span>
+            <div class="dots" id="dots"></div>
+          </div>
+
+          <div class="card-face" id="cardFace">
+            <div class="ru-sentence" id="ruText"></div>
+          </div>
+
+          <div class="fold"></div>
+
+          <div class="answer-zone">
+            <button class="peek-btn" id="peekBtn" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
+              Reveal translation
+            </button>
+            <div id="answered" hidden>
+              <div class="en-sentence" id="enText"></div>
+              <div class="rate-row">
+                <button class="rate-btn easy" data-rate="easy" type="button">Read easily<small>felt clear</small></button>
+                <button class="rate-btn hard" data-rate="hard" type="button">Struggled<small>show it sooner</small></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Complete -->
+      <section class="view complete-view" id="view-complete" hidden>
+        <svg class="check" viewBox="0 0 34 34"><circle cx="17" cy="17" r="15" stroke-width="1.5"/><path d="M10 17.5l4.5 4.5L24 12" fill="none" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div class="complete-title">Today's practice done</div>
+        <div class="complete-sub" id="completeSub">5 passages read · 5 easy · 0 tricky</div>
+        <div class="complete-chip" id="completeStreakChip">Streak: 1 day</div>
+        <div class="complete-chip gold" id="completeLevelChip">Level 1 · Азбука</div>
+        <div class="recap" id="recap"></div>
+        <button class="btn btn-primary" id="homeBtn" type="button">Back to home</button>
+      </section>
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
